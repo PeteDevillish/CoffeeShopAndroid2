@@ -31,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<Product> promoSection= new ArrayList<Product>();
 
-        promoSection.add(new Product((float) 4.0,R.drawable.brazil_coffee, "Big Brazil Coffee", 22.0, 30.0));
-        promoSection.add(new Product((float) 3.5,R.drawable.brazil_coffee, "Small Brazil Coffee", 17.0, 23.0));
+
+        promoSection.add(new Product((float) 4.0, "https://source.unsplash.com/random", "Big Brazil Coffee", 22.0, 30.0));
+        promoSection.add(new Product((float) 3.5, "https://source.unsplash.com/random", "Small Brazil Coffee", 17.0, 23.0));
 
         ProductAdapter promoAdapter = new ProductAdapter(MainActivity.this, promoSection);
 

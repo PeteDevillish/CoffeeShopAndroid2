@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class ProductAdapter extends ArrayAdapter<Product> {
@@ -19,6 +22,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
 
         View listItemView = convertView;
         if(listItemView == null) {
@@ -31,8 +35,9 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         RatingBar ratingBar = (RatingBar) listItemView.findViewById(R.id.ratingBar);
         ratingBar.setRating(product.getRating());
 
+
         ImageView imageOfProduct = (ImageView) listItemView.findViewById(R.id.image_of_product);
-        imageOfProduct.setImageResource(product.getImageResourceId());
+        Picasso.get().load(product.getPath()).into(imageOfProduct);
 
         TextView name = (TextView) listItemView.findViewById(R.id.name);
         name.setText(product.getNameOfProduct());
