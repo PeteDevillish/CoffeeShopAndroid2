@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -35,7 +34,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         RatingBar ratingBar = (RatingBar) listItemView.findViewById(R.id.ratingBar);
         ratingBar.setRating(product.getRating());
 
-
         ImageView imageOfProduct = (ImageView) listItemView.findViewById(R.id.image_of_product);
         Picasso.get().load(product.getPath()).into(imageOfProduct);
 
@@ -46,7 +44,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         promoPrice.setText(product.getPromoPrice() + " PLN");
 
         TextView regularPrice = (TextView) listItemView.findViewById(R.id.regular_price);
-        regularPrice.setText(product.getRegularPrice() + " PLN");
+        regularPrice.setText(product.getPrice() + " PLN");
 
         return listItemView;
     }

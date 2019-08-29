@@ -2,61 +2,69 @@ package com.example.coffeeshop;
 
 import com.squareup.picasso.Picasso;
 
+import java.math.BigDecimal;
+
 public class Product {
 
-    private float mRating;
-    private int mImageResourceId;
-    private String mNameOfProduct;
-    private double mPromoPrice;
-    private double mRegularprice;
-    private String mPath;
-    public Product(float rating, int imageResourceId, String nameOfProduct, double regularprice) {
-        this.mRating = rating;
-        this.mImageResourceId = imageResourceId;
-        this.mNameOfProduct = nameOfProduct;
-        this.mRegularprice = regularprice;
-    }
 
+    private Long id;
+    private float Rating;
+    private String Path;
+    private String NameOfProduct;
+    private BigDecimal price;
+    private Category category;
+    private BigDecimal promoPrice;
+    private Long numberOfSoldProducts;
+    private Long numberOfProductsInStock;
 
-    public Product(float rating, int imageResourceId, String nameOfProduct, double promoPrice, double regularPrice) {
-        this.mRating = rating;
-        this.mImageResourceId = imageResourceId;
-        this.mNameOfProduct = nameOfProduct;
-        this.mPromoPrice = promoPrice;
-        this.mRegularprice = regularPrice;
-    }
-
-    public Product(float mRating, String mPath, String mNameOfProduct, double mPromoPrice, double mRegularprice) {
-        this.mRating = mRating;
-        this.mNameOfProduct = mNameOfProduct;
-        this.mPromoPrice = mPromoPrice;
-        this.mRegularprice = mRegularprice;
-        this.mPath = mPath;
-    }
-
-    public String getPath() {
-        return mPath;
+    public Product(Long id, float rating, String path, String nameOfProduct, BigDecimal price, Category category, BigDecimal promoPrice, Long numberOfSoldProducts, Long numberOfProductsInStock) {
+        this.id = id;
+        Rating = rating;
+        Path = path;
+        NameOfProduct = nameOfProduct;
+        this.price = price;
+        this.category = category;
+        this.promoPrice = promoPrice;
+        this.numberOfSoldProducts = numberOfSoldProducts;
+        this.numberOfProductsInStock = numberOfProductsInStock;
     }
 
     public float getRating() {
-        return mRating;
+        return Rating;
     }
 
-    public int getImageResourceId() {
-        return mImageResourceId;
+    public String getPath() {
+        return Path;
     }
 
     public String getNameOfProduct() {
-        return mNameOfProduct;
+        return NameOfProduct;
     }
 
-    public double getPromoPrice() {
-        return mPromoPrice;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public double getRegularPrice() {
-        return mRegularprice;
+    public Category getCategory() {
+        return category;
     }
 
+    public BigDecimal getPromoPrice() {
+        return promoPrice;
+    }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", Rating=" + Rating +
+                ", Path='" + Path + '\'' +
+                ", NameOfProduct='" + NameOfProduct + '\'' +
+                ", price=" + price +
+                ", category=" + category +
+                ", promoPrice=" + promoPrice +
+                ", numberOfSoldProducts=" + numberOfSoldProducts +
+                ", numberOfProductsInStock=" + numberOfProductsInStock +
+                '}';
+    }
 }
