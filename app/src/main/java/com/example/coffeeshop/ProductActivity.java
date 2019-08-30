@@ -36,17 +36,17 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product);
         products = (ListView) findViewById(R.id.products);
         error = (TextView) findViewById(R.id.errorView);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        api = retrofit.create(API.class);
-
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build();
+//
+//        api = retrofit.create(API.class);
+        api = RetrofitBuilder.start();
         getProducts();
     }
     private void getProducts(){
-        Call<List<Product>> call = api.loadChanges();
+        Call<List<Product>> call = api.getAllProducts();
 
         call.enqueue(new Callback<List<Product>>() {
             @Override
@@ -56,8 +56,8 @@ public class ProductActivity extends AppCompatActivity {
                     return;
                 }
                 ArrayList<Product> productList = (ArrayList<Product>) response.body();
-                productList.add(new Product(1L, (float) 4.0, "https://source.unsplash.com/random", "Big Brazil Coffee",
-                        BigDecimal.valueOf(22.0), null, null, null, null));
+//                productList.add(new Product(1L, (float) 4.0, "https://source.unsplash.com/random", "Big Brazil Coffee",
+//                        BigDecimal.valueOf(22.0), null, null, null, null));
                 ProductAdapter productAdapter = new ProductAdapter(ProductActivity.this, productList);
                 ListView products = (ListView) findViewById(R.id.products);
                 products.setAdapter(productAdapter);

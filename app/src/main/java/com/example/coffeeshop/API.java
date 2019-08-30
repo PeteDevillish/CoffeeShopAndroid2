@@ -8,5 +8,9 @@ import retrofit2.http.Query;
 
 public interface API {
     @GET("allProducts")
-    Call<List<Product>> loadChanges();
+    Call<List<Product>> getAllProducts();
+
+    @GET("promoProducts")
+    Call<List<Product>> getPromoProducts();
+
 }

@@ -1,6 +1,7 @@
 package com.example.coffeeshop;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-
         View listItemView = convertView;
         if(listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
@@ -40,8 +40,11 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         TextView name = (TextView) listItemView.findViewById(R.id.name);
         name.setText(product.getNameOfProduct());
 
+        if (product.getPromoPrice() != null){
         TextView promoPrice = (TextView) listItemView.findViewById(R.id.promo_price);
         promoPrice.setText(product.getPromoPrice() + " PLN");
+        promoPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        }
 
         TextView regularPrice = (TextView) listItemView.findViewById(R.id.regular_price);
         regularPrice.setText(product.getPrice() + " PLN");
