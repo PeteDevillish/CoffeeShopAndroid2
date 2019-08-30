@@ -1,12 +1,19 @@
 package com.example.coffeeshop;
 
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,12 +56,24 @@ public class ProductActivity extends AppCompatActivity {
                     return;
                 }
                 ArrayList<Product> productList = (ArrayList<Product>) response.body();
+                productList.add(new Product(1L, (float) 4.0, "https://source.unsplash.com/random", "Big Brazil Coffee",
+                        BigDecimal.valueOf(22.0), null, null, null, null));
+                ProductAdapter productAdapter = new ProductAdapter(ProductActivity.this, productList);
+                ListView products = (ListView) findViewById(R.id.products);
+                products.setAdapter(productAdapter);
 
-                ProductAdapter promoAdapter = new ProductAdapter(ProductActivity.this, productList);
 
-                ListView promoProducts = (ListView) findViewById(R.id.products);
-
-                promoProducts.setAdapter(promoAdapter);
+                products.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Product product = productList.get(position);
+                        Intent myIntent = new Intent(ProductActivity.this, ProductItemActivity.class);
+                        Gson gson = new Gson();
+                        String JSONProduct = gson.toJson(product);
+                        myIntent.putExtra("product", JSONProduct);
+                        startActivity(myIntent);
+                    }
+                });
             }
 
             @Override
